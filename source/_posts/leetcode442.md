@@ -28,3 +28,27 @@ leetcode 第442题
 - 若指针到达数组尾部，结束
 
 ***
+
+Python代码如下：
+
+    class Solution(object):
+        def findDuplicates(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: List[int]
+            """
+            i=0
+            res = []
+            while(i<len(nums)):
+                if(nums[i]!=-1 and nums[i] != i+1):
+                    temp = nums[nums[i]-1]
+                    if(nums[i]==temp):
+                        res.append(temp)
+                        nums[i]=-1
+                    else:
+                        nums[nums[i]-1] = nums[i]
+                        nums[i] = temp
+                        continue
+                i += 1
+
+            return res
